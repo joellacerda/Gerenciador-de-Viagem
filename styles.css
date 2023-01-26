@@ -1,0 +1,45 @@
+main {
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif !important;
+}
+
+header {
+  margin-top: 30px;
+}
+
+img {
+  width: 50px;
+}
+
+.carteira {
+  padding-top: 40px;
+}
+
+.carteira img {
+  width: 100px;
+}
+
+.carteira .dinheiro {
+  margin-left: 30px;
+}
+
+section {
+  margin-top: 84px;
+  display: flex;
+  justify-content: center;
+}
+
+section div {
+  margin: 0 20px;
+  width: 120px;
+}
+
+section button,
+section img {
+  border-radius: 10%;
+  /* background-color: #ffffff; */
+}
+
+footer {
+  margin-top: 40px;
+}
