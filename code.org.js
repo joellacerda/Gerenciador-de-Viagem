@@ -46,7 +46,13 @@ export const setImageURL = (id, src) => {
   }
 };
 
+export const moneyAvailable = () => {
+  document.getElementById("dinheiro").classList =
+    "dinheiro badge rounded-pill text-bg-dark fs-5";
+};
+
 export const noMoreMoney = () => {
   document.getElementById("dinheiro").classList =
     "dinheiro badge rounded-pill text-bg-danger fs-5";
+  alert("Você não tem dinheiro pra isso!");
 };

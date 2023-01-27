@@ -1,6 +1,18 @@
+body {
+  height: 100vh;
+  background: -webkit-linear-gradient(70deg, #fff810 30%, rgba(0, 0, 0, 0) 30%),
+    -webkit-linear-gradient(30deg, #63e89e 60%, #ff7ee3 60%);
+  background: -o-linear-gradient(70deg, #fff810 30%, rgba(0, 0, 0, 0) 30%),
+    -o-linear-gradient(30deg, #63e89e 60%, #ff7ee3 60%);
+  background: -moz-linear-gradient(70deg, #fff810 30%, rgba(0, 0, 0, 0) 30%),
+    -moz-linear-gradient(30deg, #63e89e 60%, #ff7ee3 60%);
+  background: linear-gradient(70deg, #fff810 30%, rgba(0, 0, 0, 0) 30%),
+    linear-gradient(30deg, #63e89e 60%, #ff7ee3 60%);
+}
+
 main {
   text-align: center;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: "Roboto", sans-serif;
 }
 
 header {
@@ -29,17 +41,18 @@ section {
   justify-content: center;
 }
 
-section div {
-  margin: 0 20px;
-  width: 120px;
+.card img {
+  position: relative;
+  margin: 20px auto 10px;
 }
 
-section button,
-section img {
-  border-radius: 10%;
-  /* background-color: #ffffff; */
+section div,
+footer button {
+  margin: 0 20px;
 }
 
 footer {
   margin-top: 40px;
+  display: flex;
+  justify-content: center;
 }

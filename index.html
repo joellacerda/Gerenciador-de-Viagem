@@ -12,11 +12,17 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
     <script src="app.js" type="module"></script>
   </head>
   <body>
     <main>
-      <header><h1 class="">Gerenciador de Viagem</h1></header>
+      <header><h1 class="">Carteira de Viagem</h1></header>
       <div class="carteira">
         <img
           src="https://studio.code.org/v3/assets/R2OD9knYCaIpKc2j1zuZoEaJLskD2IwcAtQvJC25Rms/wallet.png?t=1674732282000"
@@ -28,38 +34,60 @@
           >R$ <span id="valor">200</span></span
         >
       </div>
-      <section class="">
-        <div>
-          <h3>Comida</h3>
-          <button id="comida" type="button" class="btn btn-outline-dark">
-            <img
-              src="https://studio.code.org/v3/assets/R2OD9knYCaIpKc2j1zuZoEaJLskD2IwcAtQvJC25Rms/pizza.png?t=1674732282000"
-              alt="comida"
-            />
-          </button>
+      <section>
+        <div class="card">
+          <img
+            src="https://studio.code.org/v3/assets/R2OD9knYCaIpKc2j1zuZoEaJLskD2IwcAtQvJC25Rms/pizza.png?t=1674732282000"
+            alt="comida"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Comida</h5>
+            <p class="card-text">R$ 15</p>
+            <button id="comida" type="button" class="btn btn-primary">
+              Comprar
+            </button>
+          </div>
         </div>
-        <div>
-          <h3>Brinquedo</h3>
-          <button id="brinquedo" type="button" class="btn btn-outline-dark">
-            <img
-              src="https://studio.code.org/v3/assets/R2OD9knYCaIpKc2j1zuZoEaJLskD2IwcAtQvJC25Rms/ride.png?t=1674732282000"
-              alt="brinquedo"
-            />
-          </button>
+        <div class="card">
+          <img
+            src="https://studio.code.org/v3/assets/R2OD9knYCaIpKc2j1zuZoEaJLskD2IwcAtQvJC25Rms/ride.png?t=1674732282000"
+            alt="brinquedo"
+          />
+          <div class="card-body">
+            <h5>Brinquedo</h5>
+            <p class="card-text">R$ 30</p>
+            <button id="brinquedo" type="button" class="btn btn-primary">
+              Comprar
+            </button>
+          </div>
         </div>
-        <div>
-          <h3>Circo</h3>
-          <button id="circo" type="button" class="btn btn-outline-dark">
-            <img
-              src="https://studio.code.org/v3/assets/R2OD9knYCaIpKc2j1zuZoEaJLskD2IwcAtQvJC25Rms/character.png?t=1674732282000"
-              alt="circo"
-            />
-          </button>
+        <div class="card">
+          <img
+            src="https://studio.code.org/v3/assets/R2OD9knYCaIpKc2j1zuZoEaJLskD2IwcAtQvJC25Rms/character.png?t=1674732282000"
+            alt="circo"
+          />
+          <div class="card-body">
+            <h5>Circo</h5>
+            <p class="card-text">R$ 50</p>
+            <button id="circo" type="button" class="btn btn-primary">
+              Comprar
+            </button>
+          </div>
         </div>
       </section>
       <footer>
-        <button alt="extrato" id="extrato" class="extrato btn btn-outline-dark">
+        <button alt="extrato" id="extrato" class="btn btn-outline-dark">
           Extrato
+        </button>
+        <button alt="resetar gastos" id="resetar" class="btn btn-outline-dark">
+          Resetar gastos
+        </button>
+        <button
+          alt="redefinir orcamento"
+          id="redefinir"
+          class="btn btn-outline-dark"
+        >
+          Redefinir orçamento
         </button>
       </footer>
     </main>
