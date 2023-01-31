@@ -5,8 +5,10 @@ import {
   moneyAvailable,
 } from "./code.org.js";
 
+//pergunta ao usuário quanto ele quer economizar
 let economia = prompt("Quanto você quer economizar?");
 let carteira = economia;
+
 const CUSTO = { comida: 15, brinquedo: 30, circo: 50 };
 let extrato = { comida: 0, brinquedo: 0, circo: 0 };
 
@@ -52,17 +54,24 @@ onEvent("extrato", "click", () => {
     alert("Você ainda não gastou nada...");
   } else {
     alert(
-      `Você gastou R$ ${extrato.comida} com comida, R$ ${extrato.brinquedo} com brinquedo, e R$ ${extrato.circo} com circo.\nVocê tem R$ ${carteira} na carteira.`
+      `Você gastou:
+      R$ ${extrato.comida} com comida,
+      R$ ${extrato.brinquedo} com brinquedo,
+      e R$ ${extrato.circo} com circo.
+
+      Você tem R$ ${carteira} na carteira.`
     );
   }
 });
 
+//zera os gastos
 onEvent("resetar", "click", () => {
   document.getElementById("valor").innerHTML = economia;
   carteira = economia;
   extrato = { comida: 0, brinquedo: 0, circo: 0 };
 });
 
+//pergunta novamente ao usuário quanto ele quer economizar
 onEvent("redefinir", "click", () => {
   economia = prompt("Quanto você quer economizar?");
   carteira = economia;
