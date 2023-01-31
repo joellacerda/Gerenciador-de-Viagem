@@ -48,12 +48,12 @@ export const setProperty = (id, prop, value) => {
 //   }
 // };
 
-export const moneyAvailable = () => {
+export const dinheiroDisponivel = () => {
   document.getElementById("dinheiro").classList =
     "dinheiro badge rounded-pill text-bg-dark fs-5";
 };
 
-export const noMoreMoney = () => {
+export const semDinheiro = () => {
   document.getElementById("dinheiro").classList =
     "dinheiro badge rounded-pill text-bg-danger fs-5";
   alert("Você não tem dinheiro pra isso!");

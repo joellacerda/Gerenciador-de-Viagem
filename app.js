@@ -1,8 +1,8 @@
 import {
   onEvent,
   setProperty,
-  noMoreMoney,
-  moneyAvailable,
+  semDinheiro,
+  dinheiroDisponivel,
 } from "./code.org.js";
 
 //pergunta ao usuário quanto ele quer economizar
@@ -18,33 +18,33 @@ document.getElementById("valor").innerHTML = economia;
 //quando clicar em comprar, atualiza o valor da carteira e o extrato
 onEvent("comida", "click", () => {
   if (carteira - CUSTO.comida >= 0) {
-    moneyAvailable();
+    dinheiroDisponivel();
     carteira -= CUSTO.comida;
     document.getElementById("valor").innerHTML = carteira;
     extrato.comida += CUSTO.comida;
   } else {
-    noMoreMoney();
+    semDinheiro();
   }
 });
 
 onEvent("brinquedo", "click", () => {
   if (carteira - CUSTO.brinquedo >= 0) {
-    moneyAvailable();
+    dinheiroDisponivel();
     carteira -= CUSTO.brinquedo;
     document.getElementById("valor").innerHTML = carteira;
     extrato.brinquedo += CUSTO.brinquedo;
   } else {
-    noMoreMoney();
+    semDinheiro();
   }
 });
 onEvent("circo", "click", () => {
   if (carteira - CUSTO.circo >= 0) {
-    moneyAvailable();
+    dinheiroDisponivel();
     carteira -= CUSTO.circo;
     document.getElementById("valor").innerHTML = carteira;
     extrato.circo += CUSTO.circo;
   } else {
-    noMoreMoney();
+    semDinheiro();
   }
 });
 
