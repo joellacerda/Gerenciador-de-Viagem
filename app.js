@@ -1,6 +1,5 @@
 import {
   onEvent,
-  setProperty,
   semDinheiro,
   dinheiroDisponivel,
 } from "./code.org.js";
