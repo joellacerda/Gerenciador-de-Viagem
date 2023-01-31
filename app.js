@@ -7,61 +7,65 @@ import {
 
 let economia = prompt("Quanto você quer economizar?");
 let carteira = economia;
-const comida = 15;
-const brinquedo = 30;
-const circo = 50;
-let extrato = [];
+const CUSTO = { comida: 15, brinquedo: 30, circo: 50 };
+let extrato = { comida: 0, brinquedo: 0, circo: 0 };
 
+//mostra o valor digitado pelo usuário na tela
 document.getElementById("valor").innerHTML = economia;
 
+//quando clicar em comprar, atualiza o valor da carteira e o extrato
 onEvent("comida", "click", () => {
-  if (carteira - comida >= 0) {
+  if (carteira - CUSTO.comida >= 0) {
     moneyAvailable();
-    carteira -= comida;
+    carteira -= CUSTO.comida;
     document.getElementById("valor").innerHTML = carteira;
-    extrato.push(`Comprou comida. Restante na carteira: R$ ${carteira}.\n`);
+    extrato.comida += CUSTO.comida;
   } else {
     noMoreMoney();
   }
 });
+
 onEvent("brinquedo", "click", () => {
-  if (carteira - brinquedo >= 0) {
+  if (carteira - CUSTO.brinquedo >= 0) {
     moneyAvailable();
-    carteira -= brinquedo;
+    carteira -= CUSTO.brinquedo;
     document.getElementById("valor").innerHTML = carteira;
-    extrato.push(`Comprou brinquedo. Restante na carteira: R$ ${carteira}.\n`);
+    extrato.brinquedo += CUSTO.brinquedo;
   } else {
     noMoreMoney();
   }
 });
 onEvent("circo", "click", () => {
-  if (carteira - circo >= 0) {
+  if (carteira - CUSTO.circo >= 0) {
     moneyAvailable();
-    carteira -= circo;
+    carteira -= CUSTO.circo;
     document.getElementById("valor").innerHTML = carteira;
-    extrato.push(
-      `Comprou ingresso pro circo. Restante na carteira: R$ ${carteira}.\n`
-    );
+    extrato.circo += CUSTO.circo;
   } else {
     noMoreMoney();
   }
 });
 
+//imprime o extrato
 onEvent("extrato", "click", () => {
-  if (extrato.length == 0) {
+  if (Object.values(extrato).every((el) => el == 0)) {
     alert("Você ainda não gastou nada...");
   } else {
-    alert(extrato);
+    alert(
+      `Você gastou R$ ${extrato.comida} com comida, R$ ${extrato.brinquedo} com brinquedo, e R$ ${extrato.circo} com circo.\nVocê tem R$ ${carteira} na carteira.`
+    );
   }
 });
 
 onEvent("resetar", "click", () => {
   document.getElementById("valor").innerHTML = economia;
-  extrato = [];
+  carteira = economia;
+  extrato = { comida: 0, brinquedo: 0, circo: 0 };
 });
 
 onEvent("redefinir", "click", () => {
   economia = prompt("Quanto você quer economizar?");
+  carteira = economia;
   document.getElementById("valor").innerHTML = economia;
-  extrato = [];
+  extrato = { comida: 0, brinquedo: 0, circo: 0 };
 });
