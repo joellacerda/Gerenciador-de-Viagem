@@ -1,15 +1,14 @@
-import {
-  onEvent,
-  semDinheiro,
-  dinheiroDisponivel,
-} from "./code.org.js";
+import { onEvent, semDinheiro, dinheiroDisponivel } from "./code.org.js";
 
 //pergunta ao usuário quanto ele quer economizar
 let economia = prompt("Quanto você quer economizar?");
-let carteira = economia;
+export let carteira = economia;
+export const CUSTO = { comida: 15, brinquedo: 30, circo: 50 };
 
-const CUSTO = { comida: 15, brinquedo: 30, circo: 50 };
-let extrato = { comida: 0, brinquedo: 0, circo: 0 };
+/**
+ * @type Array<{tipo: string, valor: number, dia: Date}>
+ */
+let extrato = [];
 
 //mostra o valor digitado pelo usuário na tela
 document.getElementById("valor").innerHTML = economia;
@@ -18,9 +17,8 @@ document.getElementById("valor").innerHTML = economia;
 onEvent("comida", "click", () => {
   if (carteira - CUSTO.comida >= 0) {
     dinheiroDisponivel();
-    carteira -= CUSTO.comida;
-    document.getElementById("valor").innerHTML = carteira;
-    extrato.comida += CUSTO.comida;
+    atualizaCarteira("comida");
+    atualizaExtrato("comida");
   } else {
     semDinheiro();
   }
@@ -29,9 +27,8 @@ onEvent("comida", "click", () => {
 onEvent("brinquedo", "click", () => {
   if (carteira - CUSTO.brinquedo >= 0) {
     dinheiroDisponivel();
-    carteira -= CUSTO.brinquedo;
-    document.getElementById("valor").innerHTML = carteira;
-    extrato.brinquedo += CUSTO.brinquedo;
+    atualizaCarteira("brinquedo");
+    atualizaExtrato("brinquedo");
   } else {
     semDinheiro();
   }
@@ -39,9 +36,8 @@ onEvent("brinquedo", "click", () => {
 onEvent("circo", "click", () => {
   if (carteira - CUSTO.circo >= 0) {
     dinheiroDisponivel();
-    carteira -= CUSTO.circo;
-    document.getElementById("valor").innerHTML = carteira;
-    extrato.circo += CUSTO.circo;
+    atualizaCarteira("circo");
+    atualizaExtrato("circo");
   } else {
     semDinheiro();
   }
@@ -49,17 +45,18 @@ onEvent("circo", "click", () => {
 
 //imprime o extrato
 onEvent("extrato", "click", () => {
-  if (Object.values(extrato).every((el) => el == 0)) {
+  if (Object.values(extrato).every((el) => el.valor == 0)) {
     alert("Você ainda não gastou nada...");
   } else {
-    alert(
-      `Você gastou:
-      R$ ${extrato.comida} com comida,
-      R$ ${extrato.brinquedo} com brinquedo,
-      e R$ ${extrato.circo} com circo.
-
-      Você tem R$ ${carteira} na carteira.`
-    );
+    let resultado = "";
+    extrato.forEach((lancamento) => {
+      resultado += `
+      <b>Item: ${lancamento.tipo}</b>
+      Valor: R$ ${lancamento.valor}
+      Data: ${lancamento.dia}
+      `;
+    });
+    alert(resultado);
   }
 });
 
@@ -67,7 +64,7 @@ onEvent("extrato", "click", () => {
 onEvent("resetar", "click", () => {
   document.getElementById("valor").innerHTML = economia;
   carteira = economia;
-  extrato = { comida: 0, brinquedo: 0, circo: 0 };
+  extrato = [];
 });
 
 //pergunta novamente ao usuário quanto ele quer economizar
@@ -75,5 +72,19 @@ onEvent("redefinir", "click", () => {
   economia = prompt("Quanto você quer economizar?");
   carteira = economia;
   document.getElementById("valor").innerHTML = economia;
-  extrato = { comida: 0, brinquedo: 0, circo: 0 };
+  extrato = [];
 });
+
+//funções de atualizar carteira e extrato
+const atualizaCarteira = (id) => {
+  carteira -= CUSTO[id];
+  document.getElementById("valor").innerHTML = carteira;
+};
+
+const atualizaExtrato = (id) => {
+  extrato.push({
+    tipo: id,
+    valor: CUSTO[id],
+    dia: new Date().toLocaleDateString(),
+  });
+};
