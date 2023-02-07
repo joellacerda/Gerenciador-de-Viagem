@@ -1,9 +1,17 @@
-import { onEvent, semDinheiro, dinheiroDisponivel } from "./code.org.js";
+import {
+  onEvent,
+  semDinheiro,
+  dinheiroDisponivel,
+  setContent,
+  scrollToBottom,
+  showElement,
+  hideElement,
+} from "./code.org.js";
 
 //pergunta ao usuário quanto ele quer economizar
-let economia = prompt("Quanto você quer economizar?");
-export let carteira = economia;
-export const CUSTO = { comida: 15, brinquedo: 30, circo: 50 };
+let economia = Number(prompt("Quanto você quer economizar?"));
+let carteira = economia;
+const CUSTO = { comida: 15, brinquedo: 30, circo: 50 };
 
 /**
  * @type Array<{tipo: string, valor: number, dia: Date}>
@@ -43,20 +51,34 @@ onEvent("circo", "click", () => {
   }
 });
 
-//imprime o extrato
+//imprime o extrato na prox tela
 onEvent("extrato", "click", () => {
   if (Object.values(extrato).every((el) => el.valor == 0)) {
     alert("Você ainda não gastou nada...");
   } else {
-    let resultado = "";
+    let linhas = ``;
     extrato.forEach((lancamento) => {
-      resultado += `
-      <b>Item: ${lancamento.tipo}</b>
-      Valor: R$ ${lancamento.valor}
-      Data: ${lancamento.dia}
-      `;
+      linhas += `
+        <tr>
+          <td>${lancamento.tipo}</td>
+          <td>R$ ${lancamento.valor}</td>
+          <td>${lancamento.dia}</td>
+        </tr>`;
     });
-    alert(resultado);
+    let resultado = `
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <td>Item</td>
+              <td>Valor</td>
+              <td>Data</td>
+            </tr>
+            ${linhas}
+          </tbody>
+        </table>`;
+    setContent("secaoExtrato", resultado);
+    showElement("secaoExtrato");
+    scrollToBottom();
   }
 });
 
@@ -65,6 +87,8 @@ onEvent("resetar", "click", () => {
   document.getElementById("valor").innerHTML = economia;
   carteira = economia;
   extrato = [];
+  setContent("secaoExtrato", "");
+  hideElement("secaoExtrato");
 });
 
 //pergunta novamente ao usuário quanto ele quer economizar
@@ -73,6 +97,8 @@ onEvent("redefinir", "click", () => {
   carteira = economia;
   document.getElementById("valor").innerHTML = economia;
   extrato = [];
+  setContent("secaoExtrato", "");
+  hideElement("secaoExtrato");
 });
 
 //funções de atualizar carteira e extrato
